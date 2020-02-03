@@ -13,6 +13,4 @@ jobs:
         # Version of Elm to use. E.g. 0.19.1
         elm-version: 0.19.1
     - run: |
-        sudo npm install -g elm-test
-        elm-test
         elm make
