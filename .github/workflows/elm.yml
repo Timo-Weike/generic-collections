@@ -25,5 +25,5 @@ jobs:
         # cache: # optional, default is true
     - name: test package
       run: |
-        npm install -g elm-test
+        npm install ~ elm-test
         elm-test
