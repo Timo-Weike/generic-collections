@@ -1,0 +1,20 @@
+{
+    "type": "package",
+    "name": "timo-weike/generic-collections",
+    "summary": "Dict that works with any key types by converting keys to String",
+    "license": "Apache-2.0",
+    "version": "1.0.0",
+    "exposed-modules": [
+        "ManualDict",
+        "AutoDict",
+        "ManualSet",
+        "AutoSet"
+    ],
+    "elm-version": "0.19.1 <= v < 0.20.0",
+    "dependencies": {
+        "elm/core": "1.0.4 <= v < 2.0.0"
+    },
+    "test-dependencies": {
+        "elm-explorations/test": "1.2.2 <= v < 2.0.0"
+    }
+}
