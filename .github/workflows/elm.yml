@@ -1,0 +1,25 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Elm environment
+      uses: JorelAli/setup-elm@v1
+      with:
+        # Version of Elm to use. E.g. 0.19.1
+        elm-version: 0.19.1
+    - name: Setup Elm
+      uses: justgook/setup-elm@v1
+      with:
+        # Version of Elm to use. E.g. 0.19.1
+        elm-version: 0.19.1
+        # The per-user cache of package information lives at the directory specified in the ELM_HOME environment variable.
+        # elm-home: # optional, default is 
+        # Save ELM_HOME to cache
+        # cache: # optional, default is true
