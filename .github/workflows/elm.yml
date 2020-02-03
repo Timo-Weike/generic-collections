@@ -24,4 +24,6 @@ jobs:
         # Save ELM_HOME to cache
         # cache: # optional, default is true
     - name: test package
-      run: elm-test
+      run: |
+        npm install elm-test
+        elm-test
