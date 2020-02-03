@@ -23,5 +23,5 @@ jobs:
         # elm-home: # optional, default is 
         # Save ELM_HOME to cache
         # cache: # optional, default is true
-     - name: test package
-       run: elm-test
+    - name: test package
+      run: elm-test
