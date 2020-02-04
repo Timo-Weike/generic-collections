@@ -13,4 +13,9 @@ jobs:
         # Version of Elm to use. E.g. 0.19.1
         elm-version: 0.19.1
     - run: |
+        mkdir ~/.npm-global
+        npm config set prefix '~/.npm-global'
+        PATH=~/.npm-global/bin:$PATH
+        npm install -g elm-test
+        elm-test
         elm make
