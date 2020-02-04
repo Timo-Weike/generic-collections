@@ -10,7 +10,7 @@ module ManualDict exposing
     )
 
 {-| A wrapping of `Dict` from the package `elm/core`. The keys can be any type
-but the user has to specify a conversion/hash function for very action on the
+but the user has to specify a conversion/hash function for every action on the
 dictionary that needs to compare keys with each other.
 The hash function can map the keys to any comparabel type, that is `Int`,
 `Float`, `Time`, `Char`, `Bool` and tuples or list of comparable types.
@@ -74,7 +74,7 @@ empty : Dict comparable k v
 empty = Dict CoreDict.empty
 
 {-| Creates a dictionary with one key-value pair. 
-Using the given function has hash-function for the key
+Using the given function as hash-function for the key
 
 Complexity: *O(1)*
 -}
@@ -136,7 +136,6 @@ and
 are equivalent.
 
 Complexity: *O(log n)*
-
 -}
 update : 
     (k -> comparable) 
@@ -167,7 +166,7 @@ remove f key (Dict dict)
 
     isEmpty empty == True
 
-Complexity: *O(log n)*
+Complexity: *O(1)*
 -}
 isEmpty : Dict comparable k v -> Bool
 isEmpty (Dict dict) = CoreDict.isEmpty dict
@@ -212,6 +211,8 @@ every key contained in the one dictonary is also a key in the other.
     dict2 = fromList abs [(-1,-1)]
 
     eq abs abs dict1 dict2 == True
+
+Complexity: *O(n &ast; log n)*
 -}
 eq : 
     (k -> comparable1) 
@@ -258,7 +259,7 @@ toList (Dict dict)
 
 {-| Convert an association list into a dictionary. 
 
-Complexity: *O(n * log n)*
+Complexity: *O(n  &ast;  log n)*
 -}
 fromList : (k -> comparable) -> List (k,v) -> Dict comparable k v
 fromList f list 
@@ -317,7 +318,7 @@ filter pred (Dict dict) =
 The first dictionary contains all key-value pairs which passed the test, 
 and the second contains the pairs that did not.
 
-Complexity: *O(n*log n)*
+Complexity: *O(n &ast; log n)*
 -}
 partition : 
     (k -> v -> Bool) 
@@ -333,7 +334,7 @@ partition pred (Dict dict) =
 {-| Combine two dictionaries. 
 If there is a collision, preference is given to the first dictionary.
 
-Complexity: *O(n*log n)*
+Complexity: *O(n &ast; log n)*
 -}
 union : 
     (k -> comparable3) 
@@ -353,7 +354,7 @@ Note: The hash-function needs to return the comparable type that the second
 dictionary uses because the function checks for each key of the first dictionary
 if it is a member of the second.
 
-Complexity: *O(n*log n)*
+Complexity: *O(n &ast; log n)*
 -}
 intersect : 
     (k -> comparable2)
@@ -365,7 +366,7 @@ intersect f (dict1) (dict2)
 
 {-| Keep a key-value pair when its key does not appear in the second dictionary.
 
-Complexity: *O(n*log n)*
+Complexity: *O(n &ast; log n)*
 -}
 diff : 
     (k -> comparable1)
@@ -423,10 +424,10 @@ hash-function.
 If two keys have a collision under the new hashing the key-value-pair with the 
 higher value under the old hashing is keept.
 
-    fromList identity [(-1,-1),(1,1)] |> reHash abs |> toList == [(1,1)]
-    fromList negate [(-1,-1),(1,1)] |> reHash abs |> toList == [(-1,-1)]
+    (fromList identity [(-1,-1),(1,1)] |> reHash abs |> toList) == [(1,1)]
+    (fromList negate [(-1,-1),(1,1)] |> reHash abs |> toList) == [(-1,-1)]
 
-Complexity: *O(n)*
+Complexity: *O(n &ast; log n)*
 -}
 reHash : (k -> comparable2) -> Dict comparable1 k v -> Dict comparable2 k v
 reHash f dict
