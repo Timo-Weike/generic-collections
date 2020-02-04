@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -12,10 +12,7 @@ jobs:
       with:
         # Version of Elm to use. E.g. 0.19.1
         elm-version: 0.19.1
-    - run: |
-        mkdir ~/.npm-global
-        npm config set prefix '~/.npm-global'
-        PATH=~/.npm-global/bin:$PATH
-        npm install -g elm-test
-        elm-test
-        elm make
+    - name: install npm dependencies
+      run: npm install
+    - name: Test
+      run: ./node_modules/elm-test/bin/elm-test
