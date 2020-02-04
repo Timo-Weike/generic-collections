@@ -16,19 +16,22 @@ representation of the value and the value is just the value.
 
 @docs Set
 # Build
-@docs empty, singleton, insert, update, remove
+@docs empty, singleton, insert, remove
 
 # Query
-@docs isEmpty, member, get, size
+@docs isEmpty, member, size, eq
 
 # Lists
-@docs oList, fromList
+@docs toList, fromList
 
 # Transform
 @docs map, foldl, foldr, filter, partition
 
 # Combine
-@docs union, intersect, diff, merge
+@docs union, intersect, diff
+
+# Hashing related
+@docs reHash
 
 -}
 
@@ -85,6 +88,8 @@ size : Set comparable v -> Int
 size (Set dict) 
     = Dict.size dict
 
+{-|
+-}
 eq : (v -> comparable1) 
     -> (v -> comparable2) 
     -> Set comparable1 v 
@@ -187,6 +192,8 @@ partition f (Set dict)
     = Dict.partition (\_ -> f) dict 
     |> Tuple.mapBoth Set Set
 
+{-|
+-}
 reHash : (v -> comparable2) -> Set comparable1 v -> Set comparable2 v
 reHash f set
     = foldl (\v s -> insert f v s) empty set
