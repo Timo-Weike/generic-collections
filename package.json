@@ -1,0 +1,21 @@
+{
+  "name": "generic-collections",
+  "version": "1.0.0",
+  "description": "An elm-library intendet as a work-around for the missing support for ordering on custom types in elm 0.19",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Timo-Weike/generic-collections.git"
+  },
+  "author": "Timo Weike",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Timo-Weike/generic-collections/issues"
+  },
+  "homepage": "https://github.com/Timo-Weike/generic-collections#readme",
+  "devDependencies": {
+    "elm-test": "^0.19.1-revision2"
+  }
+}
