@@ -12,7 +12,7 @@ module ManualDict exposing
 {-| A wrapping of `Dict` from the package `elm/core`. The keys can be any type
 but the user has to specify a conversion/hash function for every action on the
 dictionary that needs to compare keys with each other.
-The hash function can map the keys to any comparabel type, that is `Int`,
+The hash function can map the keys to any comparable type, that is `Int`,
 `Float`, `Time`, `Char`, `Bool` and tuples or list of comparable types.
 
 # Dictionaries
@@ -33,7 +33,7 @@ The hash function can map the keys to any comparabel type, that is `Int`,
 # Combine
 @docs union, intersect, diff, merge
 
-# Hashing relatet
+# Hashing related
 @docs reHash
 
 -}
@@ -41,8 +41,8 @@ The hash function can map the keys to any comparabel type, that is `Int`,
 import Dict as CoreDict
 import Maybe
 
-{-| A dictonary of keys and values that uses a comparable type as hash-key.
-So a `Dict String Id User` is a dictonary that lets you map an `Id` to the
+{-| A dictionary of keys and values that uses a comparable type as hash-key.
+So a `Dict String Id User` is a dictionary that lets you map an `Id` to the
 corresponding `User`.
 
     import ManualDict as Dict exposing (Dict)
@@ -83,7 +83,7 @@ singleton f key value
     = Dict (CoreDict.singleton (f key) (key, value))
 
 {-| Inserts a key-value-pair into the a dictionary using the given function
-as hash-function. If there is a collison with the hash the old key-value-pair
+as hash-function. If there is a collision with the hash the old key-value-pair
 is replaced with the new.
 
 newUsers = 
@@ -95,9 +95,9 @@ newUsers =
 
 In newUsers will be no key-value-pair for `(Name "Alice", User "Alice" 28)`. 
 
-Because of this behavior it is strongly recomended to always use the same
+Because of this behavior it is strongly recommended to always use the same
 hash-function.
-For making this easier you can use the `Dict` from the modele `AutoDict`.
+For making this easier you can use the `Dict` from the module `AutoDict`.
 
 Complexity: *O(log n)*
 -}
@@ -184,7 +184,7 @@ member f key (Dict dict)
     = CoreDict.member (f key) dict
 
 {-| Gets the value associated with the key.
-If the key is not found, `Nothing` is retured.
+If the key is not found, `Nothing` is returned.
 
     get idToString (Name "Alice") users == Just { name = "Alice", age = 28 }
     get idToString (Name "Carl") users  == Nothing
@@ -203,9 +203,9 @@ Complexity: *O(log n)*
 size : Dict comparable k v -> Int
 size (Dict dict) = CoreDict.size dict
 
-{-| Checks if the two dictionarys contains the same set of keys.
-This function ignores the values assosiated with the keys and only checks if
-every key contained in the one dictonary is also a key in the other.
+{-| Checks if the two dictionaries contains the same set of keys.
+This function ignores the values associated with the keys and only checks if
+every key contained in the one dictionary is also a key in the other.
 
     dict1 = fromList abs [(1,1)]
     dict2 = fromList abs [(-1,-1)]
@@ -422,7 +422,7 @@ merge ord leftAccu bothAccu rightAccu leftDict rightDict start =
 {-| Creates a new dictionary where all the keys are hashed using the given
 hash-function.
 If two keys have a collision under the new hashing the key-value-pair with the 
-higher value under the old hashing is keept.
+higher value under the old hashing is kept.
 
     (fromList identity [(-1,-1),(1,1)] |> reHash abs |> toList) == [(1,1)]
     (fromList negate [(-1,-1),(1,1)] |> reHash abs |> toList) == [(-1,-1)]

@@ -35,14 +35,14 @@ Like the `ManualDict.Dict` can this `Dict` hold keys of any type.
 # Combine
 @docs union, intersect, diff, merge
 
-# Hashing relatet
+# Hashing related
 @docs replaceMapping
 -}
 
 import ManualDict as BaseDict
 
 {-| A dict of key-value-pairs that also stores a hash-function.
-So a `Dict String Id User` is a dictonary that lets you map an `Id` to the
+So a `Dict String Id User` is a dictionary that lets you map an `Id` to the
 corresponding `User`.
 
     import AutoDict as Dict exposing (Dict)
@@ -163,7 +163,7 @@ member key (Dict f dict)
     = BaseDict.member f key dict
 
 {-| Gets the value associated with the key.
-If the key is not found, `Nothing` is retured.
+If the key is not found, `Nothing` is returned.
 
     get (Name "Alice") users == Just { name = "Alice", age = 28 }
     get (Name "Carl") users  == Nothing
@@ -181,9 +181,9 @@ Complexity: *O(log n)*
 size : Dict comparable k v -> Int
 size (Dict _ dict) = BaseDict.size dict
 
-{-| Checks if the two dictionarys contains the same set of keys.
-This function ignores the values assosiated with the keys and only checks if
-every key contained in the one dictonary is also a key in the other.
+{-| Checks if the two dictionaries contains the same set of keys.
+This function ignores the values associated with the keys and only checks if
+every key contained in the one dictionary is also a key in the other.
 
     dict1 = fromList abs [(1,1)]
     dict2 = fromList abs [(-1,-1)]
@@ -336,7 +336,7 @@ merge ord leftAccu bothAccu rightAccu (Dict _ leftDict) (Dict _ rightDict) start
 {-| Creates a new dictionary which uses the new hash-function to 
 rehash all keys and also stores the new hash-function.
 If two keys have a collision under the new hashing the key-value-pair with the 
-higher value under the old hashing is keept.
+higher value under the old hashing is kept.
 
     fromList identity [(-1,-1),(1,1)] |> replaceMapping abs |> toList == [(1,1)]
     fromList negate [(-1,-1),(1,1)] |> replaceMapping abs |> toList == [(-1,-1)]

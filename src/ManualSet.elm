@@ -13,8 +13,8 @@ module ManualSet exposing
 from `elm/core` as storage.
 The values can be any type but the user needs to specify a 
 conversion/hash-function for every action that needs to compare values with
-eachother.
-The hash function can map the values to any comparabel type, that is `Int`,
+each other.
+The hash function can map the values to any comparable type, that is `Int`,
 `Float`, `Time`, `Char`, `Bool` and tuples or list of comparable types.
 
 # Sets
@@ -264,7 +264,7 @@ partition f (Set dict)
 
 {-| Creates a new set where all values are rehashed with the given function.
 If two keys have a collision under the new hashing the key-value-pair with the 
-higher value under the old hashing is keept.
+higher value under the old hashing is kept.
 
     (fromList identity [-1,1] |> reHash abs |> toList) == [1]
     (fromList negate [-1,1] |> reHash abs |> toList) == [-1]

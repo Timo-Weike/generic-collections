@@ -10,7 +10,7 @@ module AutoSet exposing
     )
 
 {-| A wrapping for `ManualSet.Set` which stores a hash-function for later use.
-So afere creating a `Set` there is not need to always specify the hash-function.
+So after creating a `Set` there is not need to always specify the hash-function.
 This makes it more reliable and less error prone to use.
 
 Like `ManualSet.Set` can this `Set` hold value of any type.
@@ -65,7 +65,7 @@ import ManualSet as BaseSet
 type Set comparable v
     = Set (v -> comparable) (BaseSet.Set comparable v)
 
-{-| Creates an empty set that uses the given function for hahsing.
+{-| Creates an empty set that uses the given function for hashing.
 
 Complexity: *O(1)*
 -}
@@ -228,7 +228,7 @@ diff leftSet rightSet
 
 {-| Creates a new set where all value are rehashed using the new hash-function.
 If two keys have a collision under the new hashing the key-value-pair with the 
-higher value under the old hashing is keept.
+higher value under the old hashing is kept.
 
     (fromList identity [-1,1] |> replaceMapping abs |> toList) == [1]
     (fromList negate [-1,1] |> replaceMapping abs |> toList) == [-1]
